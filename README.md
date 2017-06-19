@@ -6,9 +6,7 @@ Decoradar is a simple decorator + serializer in Ruby
 
 Add this line to your application's Gemfile:
 
-```ruby
-gem 'decoradar'
-```
+    gem 'decoradar'
 
 And then execute:
 
@@ -31,10 +29,12 @@ class UserSerializer
 
   attributes :id, :username
   attribute :full_name, as: :name
+
+  collection :posts, serializer: PostSerializer
 end
 
 UserSerializer.new(@user).as_json
-# => { id: 1, username: "huynhquancam", name: "Cam Huynh" }
+# => { id: 1, username: "huynhquancam", name: "Cam Huynh", posts: [{...}] }
 ```
 
 Let's say you want to tweak `full_name` a bit.
@@ -86,7 +86,7 @@ UserSerializer.decorate_collection(@users).map(&:as_json)
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/huynhquancam/decoradar.
+Bug reports and pull requests are welcome on GitHub at https://github.com/qcam/decoradar.
 This project is intended to be a safe, welcoming space for collaboration, and contributors are
 expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
