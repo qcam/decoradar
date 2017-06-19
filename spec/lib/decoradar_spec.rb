@@ -119,4 +119,30 @@ describe Decoradar, type: :lib do
       expect(decorator.as_json).to eq(expected_return)
     end
   end
+
+  describe 'collections' do
+    let(:decorator_klass) do
+      post_serializer = Class.new do
+        include Decoradar
+
+        attribute :name
+      end
+
+      Class.new do
+        include Decoradar
+
+        attributes :id, :name
+        collection :posts, serializer: post_serializer, as: :articles
+      end
+    end
+
+    it 'serializes collection' do
+      model = Struct.new(:id, :name, :posts).new(1, 'foo', [double("Post", name: 'what-a-post')])
+      decorator = decorator_klass.new(model)
+
+      expected_return = { id: 1, name: 'foo', articles: [{name: 'what-a-post'}] }
+
+      expect(decorator.as_json).to eq(expected_return)
+    end
+  end
 end

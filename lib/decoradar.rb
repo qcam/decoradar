@@ -1,5 +1,6 @@
 require 'set'
 require 'decoradar/attribute'
+require 'decoradar/collection'
 
 # Decorates and serializes model into a hash
 #
@@ -42,6 +43,12 @@ module Decoradar
       attr = Attribute.new(options.merge(name: name))
       self.attribute_set << attr
       class_eval { def_delegators(:model, attr.name) }
+    end
+
+    def collection(name, options = {})
+      col = Collection.new(options.merge(name: name))
+      self.attribute_set << col
+      class_eval { def_delegators(:model, col.name) }
     end
 
     def decorate_collection(collection)
