@@ -29,7 +29,7 @@ describe Decoradar, type: :lib do
         model = Struct.new(:id).new(1)
         decorator = decorator_klass.new(model)
 
-        expect { decorator.as_json }.to raise_error(NoMethodError, /undefined method `name'/)
+        expect { decorator.as_json }.to raise_error(Decoradar::AttributeNotFound, /Attribute #name not implemented on model/)
       end
     end
 

@@ -1,6 +1,7 @@
 require 'set'
 require 'decoradar/attribute'
 require 'decoradar/collection'
+require 'decoradar/errors'
 
 # Decorates and serializes model into a hash
 #
@@ -77,6 +78,8 @@ module Decoradar
       end
     end
 
+    private
+
     def enrich_json(json, attribute)
       if attribute.including?(model)
         attribute.serialize(json, value_of(attribute))
@@ -86,7 +89,11 @@ module Decoradar
     end
 
     def value_of(attribute)
-      self.public_send(attribute.name.to_sym)
+      attribute_name = attribute.name.to_sym
+
+      self.public_send(attribute_name)
+    rescue NoMethodError
+      raise Decoradar::AttributeNotFound.new(self, attribute_name)
     end
   end
 end
