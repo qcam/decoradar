@@ -1,25 +1,31 @@
 # Decoradar
 
-Decoradar is a simple decorator + serializer in Ruby
+[![Travis](https://img.shields.io/travis/qcam/decoradar.svg)](https://travis-ci.org/qcam/decoradar)
+[![RubyGems](https://img.shields.io/gem/v/decoradar.svg)](https://rubygems.org/gems/decoradar)
+
+As the name might have implied, Decoradar is a simple JSON serializer + decorator in Ruby.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'decoradar'
+    gem 'decoradar', '~> 0.1.0'
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install decoradar
-
 ## Why Decoradar?
 
-Decoradar is really **simple** (it has only 2 classes as of writing) and **magic-free** (zero monkey patch, zero auto coercion)
-and aims to bring ActiveModel::Serializer/Draper DSL-style declaration to Plain Ruby Object.
+Decoradar is really **simple** and **magic-free** (zero monkey patch, zero auto coercion)
+and aims to bring ActiveModel::Serializer to Plain Ruby Object.
+
+What will Decoradar brings you?
+
+- `ActiveModel::Serializer` DSL style.
+- Magic free and explicit: there is no monkey patching or auto coercion.
+- Isolated testing: it's just Ruby objects without Rails dependence so feel free to unit
+  test it. (when I said unit-test I meant it)
 
 ## Usage
 
