@@ -9,7 +9,7 @@ As the name might have implied, Decoradar is a simple JSON serializer + decorato
 
 Add this line to your application's Gemfile:
 
-    gem 'decoradar', '~> 0.1.0'
+    gem 'decoradar', '~> 0.1.1'
 
 And then execute:
 
